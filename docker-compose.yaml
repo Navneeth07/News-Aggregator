@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  service-news-aggregator:
+    image: news-aggregator
+    container_name: news-aggregator
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src/:/app/src/
+    command: npm start
