@@ -48,7 +48,7 @@ export default function NewsFeeds() {
       setPage((prevPage) => prevPage + 1);
     }
   };
-  
+
   const filteredNews = filterNews(allNews);
 
   return (
@@ -76,7 +76,7 @@ export default function NewsFeeds() {
           {!hasMore && (
             <div className="flex flex-col items-center justify-center h-[70vh]">
               <p className="text-gray-400 text-lg md:text-xl font-semibold text-center px-4">
-                No news available on this date
+                No news available
               </p>
             </div>
           )}
