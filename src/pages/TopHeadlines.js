@@ -29,8 +29,8 @@ export default function TopHeadlines() {
         <ShimmerCard width="w-full" height="h-40" layout="vertical" />
       )}
       {headlines &&
-        headlines?.slice(3, 7)?.map((headline) => (
-          <div>
+        headlines?.slice(3, 7)?.map((headline, index) => (
+          <div key={index}>
             <NewsCard news={headline} />
           </div>
         ))}

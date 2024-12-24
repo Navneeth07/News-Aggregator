@@ -4,10 +4,12 @@ import { getAllNews } from "../services/newsAggregatorService";
 import NewsCard from "./NewsCard";
 import { useDispatch } from "react-redux";
 import { activateSearch, deactivateSearch } from "../slice/uiSlice";
+import Shimmer from "./Shimmer";
 
-export default function Navbar({ setSearchActive }) {
+export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedArticles, setSearchedArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const onSearchChange = (e) => {
@@ -29,8 +31,15 @@ export default function Navbar({ setSearchActive }) {
 
   const getSeacrhedNews = async () => {
     if (!searchQuery) return;
-    const searchResults = await getAllNews(searchQuery);
-    setSearchedArticles(searchResults);
+    setLoading(true);
+    try {
+      const searchResults = await getAllNews(searchQuery);
+      setSearchedArticles(searchResults);
+    } catch (err) {
+      console.log("SEARCH_NEWS_ERROR", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +66,7 @@ export default function Navbar({ setSearchActive }) {
           </div>
         </div>
       )}
+      {loading && <Shimmer />}
     </div>
   );
 }

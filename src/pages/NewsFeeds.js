@@ -66,7 +66,7 @@ export default function NewsFeeds() {
             </div>
           ))}
           {loading && <Shimmer />}
-          {!loading && filteredNews.length === 0 && !hasMore (
+          {!loading && filteredNews.length === 0 && !hasMore && (
             <div className="flex flex-col items-center justify-center h-[70vh]">
               <p className="text-gray-400 text-lg md:text-xl font-semibold text-center px-4">
                 No news available
